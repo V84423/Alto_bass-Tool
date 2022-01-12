@@ -132,8 +132,8 @@ STATIC_URL = '/static/'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'email-smtp.ap-northeast-1.amazonaws.com'
-EMAIL_HOST_USER = 'AKIASU2KO2IWAYCYA7N6'
-EMAIL_HOST_PASSWORD = 'BGAneE6qpZ5tsIHhKhuH42l9uFgo1LKykPY6ZLBO0cod'
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = '587'
-# DEFAULT_FROM_EMAIL = 'info@todoku-yo.net'
+# DEFAULT_FROM_EMAIL = ''
