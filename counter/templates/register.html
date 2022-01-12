@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html dir="ltr">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Luna, video monitoring, camera surveillance, cloud solution">
+    <meta name="description" content="Luna is a powerful monitoring system.">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Luna</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
+    <!-- Custom CSS -->
+    <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- -------------------------------------------------------------- -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- -------------------------------------------------------------- -->
+        <div class="preloader">
+        
+    </div>
+        <!-- -------------------------------------------------------------- -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- Login box.scss -->
+        <!-- -------------------------------------------------------------- -->
+        <div class="p-5" style="background:url({% static 'assets/images/big/auth-bg.jpg' %}) no-repeat center center; background-size: cover;">            
+            <div class="auth-wrapper d-flex no-block justify-content-start align-items-center">
+                <div>
+                    <div class="row"><span class="text-center"><img src="{% static 'assets/images/logo-icon.png' %}" alt="logo" /></span></div>
+                    <div class="auth-box p-4 bg-white rounded" style="width: 500px;">
+                        <div>
+                            <div class="logo text-center">
+                                <h5 class="font-weight-medium mb-3 mt-1">Sign Up</h5>
+                            </div>
+                            <!-- Form -->
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <form class="form-horizontal" action="{% url 'addUser' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control form-input-bg" id="tb-rfname" placeholder="john deo" required name="name">
+                                            <label for="tb-rfname">Full Name</label>
+                                            <div class="invalid-feedback">
+                                            Full name is required
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control form-input-bg" id="tb-remail" placeholder="john@gmail.com" required name="email">
+                                            <label for="tb-remail">Email</label>
+                                            <div class="invalid-feedback">
+                                            Email is required
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control form-input-bg" id="password" placeholder="*****" required name="password">
+                                            <label for="text-rpassword">Password</label>
+                                            <div class="invalid-feedback">
+                                            Password is required
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control form-input-bg" id="confirm_password" placeholder="*****" required name="confPassowrd">
+                                            <span id='message'></span>
+                                            <label for="text-rcpassword">Confirm Password</label>
+                                            <div class="invalid-feedback">
+                                            Password is required
+                                            </div>
+                                        </div>
+                                        <div class="checkbox checkbox-primary mb-3">
+                                            <input id="checkbox-signup" type="checkbox" class="chk-col-indigo material-inputs">
+                                            <label for="checkbox-signup"> I agree to all <a href="#">Terms</a></label>
+                                            </div>
+                                        <div class="d-flex align-items-stretch">
+                                            <button type="submit" class="btn btn-info d-block w-100">Sign up</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <span class="text-center">Powered by Vergent Technology Solutions</span>
+            </div>
+        </div>
+        <!-- -------------------------------------------------------------- -->
+        <!-- Login box.scss -->
+        <!-- -------------------------------------------------------------- -->
+    </div>
+    <!-- -------------------------------------------------------------- -->
+    <!-- All Required js -->
+    <!-- -------------------------------------------------------------- -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- -------------------------------------------------------------- -->
+    <!-- This page plugin js -->
+    <!-- -------------------------------------------------------------- -->
+    <!--Custom JavaScript -->
+    <script type="text/javascript">
+        $(".preloader").fadeOut();
+
+        $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val() == $('#confirm_password').val()) {
+                $('#message').html('Matching').css('color', 'green');
+            } else 
+                $('#message').html('Not Matching').css('color', 'red');
+        });
+
+    </script>
+</body>
+
+</html>

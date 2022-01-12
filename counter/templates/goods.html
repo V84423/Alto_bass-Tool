@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Luna, video monitoring, camera surveillance, cloud solution">
+    <meta name="description" content="Luna is a powerful monitoring system.">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Luna</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
+    <!-- This page plugin CSS -->
+    <link href="{% static 'assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <!-- -------------------------------------------------------------- -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- -------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------- -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- -------------------------------------------------------------- -->
+    <div id="main-wrapper">
+        <!-- -------------------------------------------------------------- -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- -------------------------------------------------------------- -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="{% url 'goods' %}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{% static 'assets/images/logo-icon.png' %}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="{% static 'assets/images/logo-light-icon.png' %}" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="{% static 'assets/images/logo-text.png' %}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="{% static 'assets/images/logo-light-text.png' %}" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                            class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav me-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a
+                                class="nav-link sidebartoggler d-none d-md-block waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item d-none d-md-block search-box"> <a
+                                class="nav-link d-none d-md-block waves-effect waves-dark" href="javascript:void(0)"><i
+                                    class="ti-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter"> 
+                                <a class="srh-btn"><i class="ti-close"></i></a> 
+                                <a class="form-control text-center search" href="#">
+                                    <i class="ti-search"></i> Search by keyword</a>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav">
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect waves-dark"  href="{% url 'logout' %}" aria-haspopup="true" aria-expanded="false"> LogOut <i class="mdi mdi-logout"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- -------------------------------------------------------------- -->
+        <!-- End Topbar header -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- -------------------------------------------------------------- -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{% url 'dashboard' %}" aria-expanded="false"><i class="mdi mdi-gauge"></i><span
+                                    class="hide-menu">Dashboard</span></a></li>                        
+                        <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{% url 'goods' %}" aria-expanded="false"><i class="mdi mdi-bell"></i><span
+                                    class="hide-menu">Goods</span></a></li>                        
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- -------------------------------------------------------------- -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- Page wrapper  -->
+        <!-- -------------------------------------------------------------- -->
+        <div class="page-wrapper">
+            <!-- -------------------------------------------------------------- -->
+            <!-- Container fluid  -->
+            <!-- -------------------------------------------------------------- -->
+            <div class="container-fluid">
+                <div class="row mb-4">
+                    <div class="col-md-2 col-12 align-self-center">
+                        <div class="input-group mb-3">
+                            <button type="button" class="btn btn-info">
+                                <i class="ti-email text-white"></i></button>
+                            <input type="text" class="form-control" placeholder="Enter Email Address Here" id="receiveAddress">
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-12 align-self-center"></div>
+                    <div class="col-md-4 col-12">
+                        <div class="btn-group">
+                            <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" id="start">
+                                 Start
+                            </button>
+                            <button type="button" class="btn waves-effect waves-light btn-rounded btn-secondary" id="stop">
+                                Stop
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex me-3 ms-2">
+                                
+                            </div>
+                            <div class="d-flex me-3 ms-2">
+                                
+                            </div>
+                            <div class="d-flex ms-2">
+                                <button type="button" id="addList" class="justify-content-center w-100 btn btn-info d-flex align-items-center">
+                                    <i data-feather="plus" class="feather-sm fill-white me-2"></i> Add 
+                                </button>
+                            </div>
+                            <div class="d-flex ms-2">
+                                <button type="button" id="delList" class="justify-content-center w-100 btn btn-info d-flex align-items-center">
+                                    <i data-feather="trash-2" class="feather-sm fill-white me-2"></i> Delete 
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-body">
+                    <div class="table-responsive">
+                        <table class="table search-table v-middle">
+                            <thead class="header-item">
+                                <th>
+                                    <div class="n-chk align-self-center text-center">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input secondary" id="contact-check-all">
+                                            <label class="form-check-label" for="contact-check-all"></label>
+                                            <span class="new-control-indicator"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>shop</th>
+                                <th>goods url</th>
+                                <th>onsale</th>
+                                <th>inventory</th>
+                                <th>date</th>
+                            </thead>
+                            <tbody></tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Share Modal -->
+            <div class="modal fade" id="Sharemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header d-flex align-items-center">
+                                <h5 class="modal-title" id="exampleModalLabel"><i class="mdi mdi-file me-2"></i>
+                                    Add Goods List</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group mb-3">
+                                    <button type="button" class="btn btn-info">
+                                        <i class="ti-link text-white"></i></button>
+                                    <input type="text" class="form-control goodsURL" placeholder="Enter Goods Link Here"aria-label="Username">
+                                </div>
+<!--                                 <div class="row">
+                                    <div class="col-3 text-center">
+                                        <a href="#Whatsapp" class="text-success">
+                                            <i class="display-6 mdi mdi-whatsapp"></i><br><span
+                                                class="text-muted">Whatsapp</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <a href="#Facebook" class="text-info">
+                                            <i class="display-6 mdi mdi-facebook"></i><br><span
+                                                class="text-muted">Facebook</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <a href="#Instagram" class="text-danger">
+                                            <i class="display-6 mdi mdi-instagram"></i><br><span
+                                                class="text-muted">Instagram</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <a href="#Skype" class="text-cyan">
+                                            <i class="display-6 mdi mdi-skype"></i><br><span
+                                                class="text-muted">Skype</span>
+                                        </a>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success addGoods">
+                                    <i class="fas fa-paper-plane"></i>Add
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- -------------------------------------------------------------- -->
+            <!-- End Container fluid  -->
+            <!-- -------------------------------------------------------------- -->
+            <!-- -------------------------------------------------------------- -->
+            <!-- footer -->
+            <!-- -------------------------------------------------------------- -->
+<!--             <footer class="footer text-center">
+                All Rights Reserved by Materialpro admin.
+            </footer> -->
+            <!-- -------------------------------------------------------------- -->
+            <!-- End footer -->
+            <!-- -------------------------------------------------------------- -->
+        </div>
+        <!-- -------------------------------------------------------------- -->
+        <!-- End Page wrapper  -->
+        <!-- -------------------------------------------------------------- -->
+    </div>
+    <!-- -------------------------------------------------------------- -->
+    <!-- End Wrapper -->
+    <!-- -------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------- -->
+    <!-- customizer Panel -->
+    <!-- -------------------------------------------------------------- -->
+    <aside class="customizer">
+        <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
+        <div class="customizer-body">
+            <div class="tab-content" id="pills-tabContent">
+                <!-- Tab 1 -->
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="p-3 border-bottom">
+                        <!-- Sidebar -->
+                        <h5 class="font-weight-medium mb-2 mt-2">Layout Settings</h5>
+                        <div class="form-check mt-3">
+                            <input type="checkbox" name="theme-view" class="form-check-input" id="theme-view">
+                            <label class="form-check-label" for="theme-view"> <span>Dark Theme</span> </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="sidebartoggler form-check-input" name="collapssidebar"
+                                id="collapssidebar">
+                            <label class="form-check-label" for="collapssidebar"> <span>Collapse Sidebar</span> </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input type="checkbox" name="sidebar-position" class="form-check-input"
+                                id="sidebar-position">
+                            <label class="form-check-label" for="sidebar-position"> <span>Fixed Sidebar</span> </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input type="checkbox" name="header-position" class="form-check-input" id="header-position">
+                            <label class="form-check-label" for="header-position"> <span>Fixed Header</span> </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input type="checkbox" name="boxed-layout" class="form-check-input" id="boxed-layout">
+                            <label class="form-check-label" for="boxed-layout"> <span>Boxed Layout</span> </label>
+                        </div>
+                    </div>
+                    <div class="p-3 border-bottom">
+                        <!-- Logo BG -->
+                        <h5 class="font-weight-medium mb-2 mt-2">Logo Backgrounds</h5>
+                        <ul class="theme-color m-0 p-0">
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-logobg="skin1"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-logobg="skin2"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-logobg="skin3"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-logobg="skin4"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-logobg="skin5"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-logobg="skin6"></a></li>
+                        </ul>
+                        <!-- Logo BG -->
+                    </div>
+                    <div class="p-3 border-bottom">
+                        <!-- Navbar BG -->
+                        <h5 class="font-weight-medium mb-2 mt-2">Navbar Backgrounds</h5>
+                        <ul class="theme-color m-0 p-0">
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-navbarbg="skin1"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-navbarbg="skin2"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-navbarbg="skin3"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-navbarbg="skin4"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-navbarbg="skin5"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-navbarbg="skin6"></a></li>
+                        </ul>
+                        <!-- Navbar BG -->
+                    </div>
+                    <div class="p-3 border-bottom">
+                        <!-- Logo BG -->
+                        <h5 class="font-weight-medium mb-2 mt-2">Sidebar Backgrounds</h5>
+                        <ul class="theme-color m-0 p-0">
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-sidebarbg="skin1"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-sidebarbg="skin2"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-sidebarbg="skin3"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-sidebarbg="skin4"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-sidebarbg="skin5"></a></li>
+                            <li class="theme-item list-inline-item me-1"><a href="javascript:void(0)"
+                                    class="theme-link rounded-circle d-block" data-sidebarbg="skin6"></a></li>
+                        </ul>
+                        <!-- Logo BG -->
+                    </div>
+                </div>
+                <!-- End Tab 1 -->
+            </div>
+        </div>
+    </aside>
+    <!-- -------------------------------------------------------------- -->
+    <!-- All Jquery -->
+    <!-- -------------------------------------------------------------- -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- apps -->
+    <script src="{% static 'dist/js/app.min.js' %}"></script>
+    <script src="{% static 'dist/js/app.init.js' %}"></script>
+    <script src="{% static 'dist/js/app-style-switcher.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/sparkline/sparkline.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'dist/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'dist/js/feather.min.js' %}"></script>
+    <script src="{% static 'dist/js/custom.min.js' %}"></script>
+    <!--This page plugins -->
+    <!-- <script src="{% static 'dist/js/pages/contact/contact.js' %}"></script> -->
+
+    <script type="text/javascript">
+        
+        var checkedItems = [];
+
+        $(function(){
+
+            $.get("{% url 'getUrl' %}",function(res){
+
+                for(index in res['url'])
+                {
+                    url = res['url'][index]['url'];
+                    if(url.indexOf('biccamera.com') != -1) {company = 'ビックカメラ'; ico = '<img src="{% static "assets/images/icon/biccamera.ico" %}" width="30px">';}
+                    else if(url.indexOf('yamada-denkiweb.com') != -1) {company = 'ヤマダ電機'; ico = '<img src="{% static "assets/images/icon/yamada.ico" %}" width="30px">'}
+                    else if(url.indexOf('yodobashi.com') != -1) {company = 'ヨドバシカメラ'; ico = '<img src="{% static "assets/images/icon/yodobashi.ico" %}" width="30px">'}
+
+                    id = res['url'][index]['id'];
+                    onsale = res['url'][index]['onsale'];
+
+                    if(onsale==0) onsale_str = '-';
+                    else onsale_str = onsale+'%';
+
+                    inventory = res['url'][index]['inventory'];
+
+                    if(inventory==1){
+                        if(url.indexOf('biccamera.com') != -1) inventory_str = '在庫あり';
+                        if(url.indexOf('yamada-denkiweb.com') != -1) inventory_str = 'お取り寄せ';
+                        if(url.indexOf('yodobashi.com') != -1) inventory_str = '在庫あり';
+                    }
+                    else if(inventory==0){
+                        if(url.indexOf('biccamera.com') != -1) inventory_str = '入荷次第出荷';
+                        if(url.indexOf('yamada-denkiweb.com') != -1) inventory_str = '売り切れました';
+                        if(url.indexOf('yodobashi.com') != -1) inventory_str = '予定数の販売を終了しました';
+                    }
+                    else{
+                        if(url.indexOf('biccamera.com') != -1)  inventory_str = '販売を終了';
+                        if(url.indexOf('yamada-denkiweb.com') != -1) inventory_str = '販売終了';
+                        if(url.indexOf('yodobashi.com') != -1) inventory_str = '販売を終了';
+                    }
+
+                    regDT = new Date(res['url'][index]['created_at']).toISOString().slice(0,10);
+    
+                    $("tbody").append('<tr class="search-items"><td><div class="n-chk align-self-center text-center"><div class="form-check"><input type="checkbox" class="form-check-input contact-chkbox primary" id="'+id+'"><label class="form-check-label" for="checkbox1"></label></div></div></td><td><div class="d-flex align-items-center">'+ico+'<div class="ms-3"><div class="user-meta-info"><h6 class="user-name mb-0 font-weight-medium" data-name="Emma Adams">'+company+'</h6></div></div></div></td><td><span class="usr-email-addr" data-email="adams@mail.com">'+url+'</span></td><td><span class="usr-location" data-location="Boston, USA">'+onsale_str+'</span></td><td><span class="usr-location" data-location="Boston, USA">'+inventory_str+'</span></td><td><span class="usr-location" data-location="Boston, USA">'+regDT+'</span></td></tr>');
+                }
+            },"json");
+            
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                }
+            });
+
+        });
+
+        window.onload = function() {
+            $('.preloader').css('background','#000000b0');
+        };
+
+
+        
+
+        $("#addList").click(function(){
+            $(".goodsURL").val('');
+            $("#Sharemodel").modal('show');
+        });
+
+        $("#delList").click(function(){
+            $('.preloader').show();  // show loading indicator
+            ids = 'ids';
+            arr = [];
+
+            $('.contact-chkbox:checked').each(function(ele){                
+                arr.push($(this).attr('id'));   
+                ids += "," + $(this).attr('id');
+            });
+
+            if(ids.length == 0) {
+                $('.preloader').hide();  // show loading indicator
+                alert("Please Select Items to Delete."); 
+                return;
+            }
+            else{
+                $('.preloader').hide();  // show loading indicator
+                $.get("{% url 'delUrl' %}",{ids:ids},function(res){
+
+                    for(i in arr){
+                        id = "#"+arr[i];
+                        $(id).parents(".search-items").remove();
+                    }
+                    
+                });
+                
+
+            }
+        })
+
+        $("#contact-check-all").on('click',function(){
+
+            if( $(this).is(':checked') ) {
+                $('.contact-chkbox').prop('checked', true);
+                $('.contact-chkbox').each(function(i){
+                    id = $(this).attr('id');
+                    if(checkedItems.indexOf(id)==-1) checkedItems.push(id);
+                });
+
+                console.log(checkedItems);
+
+            }
+            else{
+                $('.contact-chkbox').prop('checked', false);
+                $('.contact-chkbox').each(function(i){
+                    id = $(this).attr('id');
+                    checkedItems.pop(checkedItems.indexOf(id));
+                });
+
+                console.log(checkedItems);
+            }
+        });
+
+
+
+
+        $('body').on('change','.contact-chkbox',function(){
+            id = $(this).attr('id');
+            if( $(this).is(':checked') ) {
+                if(checkedItems.indexOf(id)==-1) checkedItems.push(id);
+            }
+            else{
+                checkedItems.pop(checkedItems.indexOf(id));
+            }
+
+            console.log(checkedItems);
+        });
+
+        $(".addGoods").click(function(){
+
+            $('.preloader').show();  // show loading indicator
+
+            url = $(".goodsURL").val();
+
+            if(url.indexOf('biccamera.com') != -1) {company = 'ビックカメラ'; ico = '<img src="{% static "assets/images/icon/biccamera.ico" %}" width="30px">';}
+            else if(url.indexOf('yamada-denkiweb.com') != -1) {company = 'ヤマダ電機'; ico = '<img src="{% static "assets/images/icon/yamada.ico" %}" width="30px">'}
+            else if(url.indexOf('yodobashi.com') != -1) {company = 'ヨドバシカメラ'; ico = '<img src="{% static "assets/images/icon/yodobashi.ico" %}" width="30px">'}
+            else {alert('Non Registered Company Name!'); return;}
+
+            $.post("{% url 'addUrl' %}",{url:url},function(res){
+                
+                $('.preloader').hide();  // hide loading indicator
+
+                if(res == 'exist') {
+                    alert("URL Was Duplicated."); 
+                    return;
+                }
+                id = res['saved_id'];
+                regDT = new Date().toISOString().slice(0,10);
+
+                onsale = res['onsale'];
+
+                if(onsale==0) onsale_str = '-';
+                else onsale_str = onsale+'%';
+
+                inventory = res['inventory'];
+
+                if(inventory==1) inventory_str = '在庫あり';
+                else if(inventory==0) inventory_str = '入荷次第出荷';
+                else inventory_str = '販売を終了';
+
+                $("tbody").before('<tr class="search-items"><td><div class="n-chk align-self-center text-center"><div class="form-check"><input type="checkbox" class="form-check-input contact-chkbox primary" id="'+id+'"><label class="form-check-label" for="checkbox1"></label></div></div></td><td><div class="d-flex align-items-center">'+ico+'<div class="ms-3"><div class="user-meta-info"><h6 class="user-name mb-0 font-weight-medium" data-name="Emma Adams">'+company+'</h6></div></div></div></td><td><span class="usr-email-addr" data-email="adams@mail.com">'+url+'</span></td><td><span class="usr-location" data-location="Boston, USA">'+onsale_str+'</span></td><td><span class="usr-location" data-location="Boston, USA">'+inventory_str+'</span></td><td><span class="usr-location" data-location="Boston, USA">'+regDT+'</span></td></tr>');
+
+                $(".goodsURL").val('');
+                $("#Sharemodel").modal('hide');
+
+                
+            });           
+        });
+
+
+        $("#start").click(function(){
+            checkedItems_str = checkedItems.toString();
+
+            var element = $("#receiveAddress");
+            var Email = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+            if (element.val() == null || element.val().trim() == "" || !Email.test(element.val())){
+
+                alert("Please Insert Right Email Address");
+                return;
+            }
+
+            if(checkedItems_str.trim() == '')
+                if(confirm("Would you like to check all items?"))
+                    checkedItems_str = 'all';
+                else
+                    return;
+
+            $.get("{% url 'start' %}",{checkedItems:checkedItems_str,emailAddress:element.val()},function(res){
+                alert(res);
+            });
+
+        });
+
+        $("#stop").click(function(){
+
+            $.get("{% url 'stop' %}",function(res){
+                alert(res);
+            });
+
+        });
+
+
+    </script>
+</body>
+
+</html>
